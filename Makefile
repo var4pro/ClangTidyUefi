@@ -22,7 +22,7 @@ clean:
 
 #tidy
 tidy:
-	clang-tidy src/*.cpp -p build/
+	clang-tidy $(SRC_FILES_V) -p build/
 
 #format
 format-do:
@@ -63,7 +63,7 @@ test-unchecked: build tests/cases/compile_flags.txt
 test: test-banned test-trace test-unchecked
 	@echo "\n🎉 ALL UEFI STATIC ANALYSIS TESTS PASSED SUCCESSFULLY! 🎉\n"
 
-update-expected: build
+update-expected: build tests/cases/compile_flags.txt
 	@echo "Regenerating expected test report baselines..."
 	@$(TIDY_RUN_V) --checks='-*,uefi-banned-allocator' tests/cases/TestBanned.c 2>&1 \
 		| sed 's|.*tests/cases/|tests/cases/|g' > tests/test_banned_tidy_report_expected.txt
