@@ -1,8 +1,3 @@
-#include <clang/ASTMatchers/ASTMatchFinder.h>
-#include <clang-tidy/ClangTidyModule.h>
-#include <clang-tidy/utils/OptionsUtils.h>
-#include <clang-tidy/ClangTidyCheck.h>
-#include <clang/Lex/Lexer.h>
 #include <string>
 #include <vector>
 

@@ -1,6 +1,6 @@
 #include "Allocator.h"
-
 #include <Uefi.h>
+#include <Base.h>
 #include <Library/UefiLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 
@@ -21,7 +21,7 @@ extern EFI_STATUS EFIAPI FreePages(IN EFI_PHYSICAL_ADDRESS Memory, IN UINTN Page
 
 VOID Test1_BannedDirectAlloc(VOID) {
     VOID** Ptr = NULL;
-    AllocatePool(EfiBootServicesData, 128, Ptr); // WARNING
+    AllocatePool(EfiBootServicesData, 128, Ptr); // WARuNING
 }
 
 VOID Test2_BannedDirectFree(VOID* Ptr) { FreePool(Ptr); } // WARNING

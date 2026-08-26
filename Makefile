@@ -39,21 +39,21 @@ format-do:
 # TEST SUITE
 # ==============================================================================
 
-test-banned: build
+test-banned: build compile_flags.txt
 	@echo "Running Banned Allocators Test..."
 	@$(TIDY_RUN_V) --checks='-*,uefi-banned-allocator' $(TESTS_DIR_V)/cases/TestBanned.c 2>&1 \
 		| sed 's|.*tests/cases/|tests/cases/|g' \
 		| diff -u $(TESTS_DIR_V)/test_banned_tidy_report_expected.txt -
 	@echo "  └─ Banned Allocators Test PASSED"
 
-test-trace: build
+test-trace: build compile_flags.txt
 	@echo "Running Trace Function Test..."
 	@$(TIDY_RUN_V) --checks='-*,uefi-trace-function' $(TESTS_DIR_V)/cases/TestTrace.c 2>&1 \
 		| sed 's|.*tests/cases/|tests/cases/|g' \
 		| diff -u $(TESTS_DIR_V)/test_trace_tidy_report_expected.txt -
 	@echo "  └─ Trace Function Test PASSED"
 
-test-unchecked: build
+test-unchecked: build compile_flags.txt
 	@echo "Running Unchecked Status Test..."
 	@$(TIDY_RUN_V) --checks='-*,uefi-unchecked-status' $(TESTS_DIR_V)/cases/TestUnchecked.c 2>&1 \
 		| sed 's|.*tests/cases/|tests/cases/|g' \
@@ -64,15 +64,25 @@ test-unchecked: build
 test: test-banned test-trace test-unchecked
 	@echo "\n🎉 ALL UEFI STATIC ANALYSIS TESTS PASSED SUCCESSFULLY! 🎉\n"
 
-update-expected: build
-	@echo "🔄 Regenerating expected test report baselines..."
+update-expected: build compile_flags.txt
+	@echo "Regenerating expected test report baselines..."
 	@$(TIDY_RUN_V) --checks='-*,uefi-banned-allocator' $(TESTS_DIR_V)/cases/TestBanned.c 2>&1 \
 		| sed 's|.*tests/cases/|tests/cases/|g' > $(TESTS_DIR_V)/test_banned_tidy_report_expected.txt
 	@$(TIDY_RUN_V) --checks='-*,uefi-trace-function' $(TESTS_DIR_V)/cases/TestTrace.c 2>&1 \
 		| sed 's|.*tests/cases/|tests/cases/|g' > $(TESTS_DIR_V)/test_trace_tidy_report_expected.txt
 	@$(TIDY_RUN_V) --checks='-*,uefi-unchecked-status' $(TESTS_DIR_V)/cases/TestUnchecked.c 2>&1 \
 		| sed 's|.*tests/cases/|tests/cases/|g' > $(TESTS_DIR_V)/test_unchecked_tidy_report_expected.txt
-	@echo "✅ Expected reports updated successfully!"
+	@echo "Expected reports updated successfully!"
+
+WORKSPACE_DIR_V ?= 
+export EDK2_PATH_V := $(WORKSPACE_DIR_V)/edk2
+
+#flags
+generate-flags: compile_flags.txt
+compile_flags.txt: compile_flags.txt.in
+	$(if $(strip $(WORKSPACE_DIR_V)),,$(error [ERROR] WORKSPACE_DIR_V is not set!))
+	@echo "Generating compile_flags.txt..."
+	@envsubst < $< > $@
 
 #manually invoke this
 format-check-all: format-do hook-check

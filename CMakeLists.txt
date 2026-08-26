@@ -17,6 +17,14 @@ add_definitions(${LLVM_DEFINITIONS})
 
 add_library(UefiTidyModule SHARED src/Main.cpp)
 
+target_precompile_headers(UefiTidyModule PRIVATE
+    <clang/ASTMatchers/ASTMatchFinder.h>
+    <clang-tidy/ClangTidyModule.h>
+    <clang-tidy/utils/OptionsUtils.h>
+    <clang-tidy/ClangTidyCheck.h>
+    <clang/Lex/Lexer.h>
+)
+
 target_link_libraries(UefiTidyModule
     PRIVATE
     clang-cpp
