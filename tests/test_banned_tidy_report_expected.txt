@@ -1,5 +1,5 @@
 tests/cases/TestBanned.c:24:5: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
-   24 |     AllocatePool(EfiBootServicesData, 128, Ptr); // WARNING
+   24 |     AllocatePool(EfiBootServicesData, 128, Ptr); // WARuNING
       |     ^
 tests/cases/TestBanned.c:27:42: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
    27 | VOID Test2_BannedDirectFree(VOID* Ptr) { FreePool(Ptr); } // WARNING

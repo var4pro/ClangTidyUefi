@@ -1,33 +1,33 @@
-tests/cases/TestTrace.c:8:29: warning: Function 'Test1' must start with TRACE_FUNCTION(); [uefi-trace-function]
-    8 | EFI_STATUS EFIAPI Test1() { return EFI_SUCCESS; } // WARNING
+tests/cases/TestTrace.c:10:29: warning: Function 'Test1' must start with TRACE_FUNCTION(); [uefi-trace-function]
+   10 | EFI_STATUS EFIAPI Test1() { return EFI_SUCCESS; } // WARNING
       |                             ^
-tests/cases/TestTrace.c:17:5: warning: Function 'Test3' must start with TRACE_FUNCTION(); [uefi-trace-function]
-   17 |     return EFI_SUCCESS;
+tests/cases/TestTrace.c:19:5: warning: Function 'Test3' must start with TRACE_FUNCTION(); [uefi-trace-function]
+   19 |     return EFI_SUCCESS;
       |     ^
-tests/cases/TestTrace.c:21:5: warning: Function 'Test4' must start with TRACE_FUNCTION(); [uefi-trace-function]
-   21 |     return EFI_SUCCESS;
+tests/cases/TestTrace.c:23:5: warning: Function 'Test4' must start with TRACE_FUNCTION(); [uefi-trace-function]
+   23 |     return EFI_SUCCESS;
       |     ^
-tests/cases/TestTrace.c:24:5: warning: Function 'Test5' must start with TRACE_FUNCTION(); [uefi-trace-function]
-   24 |     Print(L"TRACE_FUNCTION();"); // WARNING
+tests/cases/TestTrace.c:26:5: warning: Function 'Test5' must start with TRACE_FUNCTION(); [uefi-trace-function]
+   26 |     Print(L"TRACE_FUNCTION();"); // WARNING
       |     ^
-tests/cases/TestTrace.c:29:5: warning: Function 'Test6' must start with TRACE_FUNCTION(); [uefi-trace-function]
-   29 |     EFI_STATUS Status = EFI_SUCCESS; // WARNING
+tests/cases/TestTrace.c:31:5: warning: Function 'Test6' must start with TRACE_FUNCTION(); [uefi-trace-function]
+   31 |     EFI_STATUS Status = EFI_SUCCESS; // WARNING
       |     ^
-tests/cases/TestTrace.c:36:5: warning: Function 'Test7' must start with TRACE_FUNCTION(); [uefi-trace-function]
-   36 |     TRACE_FUNCTION_FAKE(); // WARNING
+tests/cases/TestTrace.c:38:5: warning: Function 'Test7' must start with TRACE_FUNCTION(); [uefi-trace-function]
+   38 |     TRACE_FUNCTION_FAKE(); // WARNING
       |     ^
-tests/cases/TestTrace.c:41:5: warning: Function 'Test8' must start with TRACE_FUNCTION(); [uefi-trace-function]
-   41 |     { // WARNING
+tests/cases/TestTrace.c:43:5: warning: Function 'Test8' must start with TRACE_FUNCTION(); [uefi-trace-function]
+   43 |     { // WARNING
       |     ^
-tests/cases/TestTrace.c:50:18: warning: Function 'Test9' must start with TRACE_FUNCTION(); [uefi-trace-function]
-   50 |     EMPTY_TRACE(); // WARNING
+tests/cases/TestTrace.c:52:18: warning: Function 'Test9' must start with TRACE_FUNCTION(); [uefi-trace-function]
+   52 |     EMPTY_TRACE(); // WARNING
       |                  ^
-tests/cases/TestTrace.c:66:13: warning: Function 'Test12_EmptyFunction' is empty and missing TRACE_FUNCTION(); [uefi-trace-function]
-   66 | VOID EFIAPI Test12_EmptyFunction() {} // WARNING
+tests/cases/TestTrace.c:68:13: warning: Function 'Test12_EmptyFunction' is empty and missing TRACE_FUNCTION(); [uefi-trace-function]
+   68 | VOID EFIAPI Test12_EmptyFunction() {} // WARNING
       |             ^
-tests/cases/TestTrace.c:70:5: warning: Function 'Test13_LeadingSemicolon' must start with TRACE_FUNCTION(); [uefi-trace-function]
-   70 |     ; // WARNING
+tests/cases/TestTrace.c:72:5: warning: Function 'Test13_LeadingSemicolon' must start with TRACE_FUNCTION(); [uefi-trace-function]
+   72 |     ; // WARNING
       |     ^
-tests/cases/TestTrace.c:94:21: warning: Function 'Test17' must start with TRACE_FUNCTION(); [uefi-trace-function]
-   94 |     TRACE_FUNCTION(); // WARNING
+tests/cases/TestTrace.c:96:21: warning: Function 'Test17' must start with TRACE_FUNCTION(); [uefi-trace-function]
+   96 |     TRACE_FUNCTION(); // WARNING
       |                     ^

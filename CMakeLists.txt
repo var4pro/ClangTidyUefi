@@ -23,6 +23,8 @@ target_precompile_headers(UefiTidyModule PRIVATE
     <clang-tidy/utils/OptionsUtils.h>
     <clang-tidy/ClangTidyCheck.h>
     <clang/Lex/Lexer.h>
+    <string>
+    <vector>
 )
 
 target_link_libraries(UefiTidyModule

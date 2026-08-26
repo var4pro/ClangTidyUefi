@@ -1,5 +1,7 @@
 #include "LogUtils.h"
+
 #include <Uefi.h>
+#include <Base.h>
 #include <Library/UefiLib.h>
 #include <Uefi/UefiBaseType.h>
 

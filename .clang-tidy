@@ -14,7 +14,8 @@ Checks: >
   -llvm-include-order,
   -bugprone-throwing-static-initialization,
   -misc-use-anonymous-namespace,
-  -misc-include-cleaner
+  -misc-include-cleaner,
+  -clang-diagnostic-ignored-gch
 
 WarningsAsErrors: ''
 HeaderFilterRegex: '.*'
