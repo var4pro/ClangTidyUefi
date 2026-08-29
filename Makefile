@@ -2,7 +2,7 @@ SHELL := /bin/bash
 
 SRC_FILES_V := $(shell find src -type f -name "*.cpp" 2>/dev/null)
 PLUGIN_SO   := build/libUefiTidyModule.so
-TIDY_RUN_V    := clang-tidy --quiet --load=$(PLUGIN_SO)
+TIDY_RUN_V    := clang-tidy --quiet --load=$(PLUGIN_SO) --config='{CheckOptions: {uefi-trace-function.TargetFiles: ""}}'
 
 .PHONY: all build clean tidy format-do test format-check-all hook-check \
         update-expected generate-flags test-banned test-trace test-unchecked
