@@ -1,3 +1,5 @@
+tests/cases/TestUnchecked.c.
+error: too many errors emitted, stopping now [clang-diagnostic-error]
 tests/cases/TestUnchecked.c:19:5: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
    19 |     MockEfiStatusFunc();                           // WARNING
       |     ^
@@ -58,3 +60,60 @@ tests/cases/TestUnchecked.c:219:9: warning: Return value of type 'EFI_STATUS' mu
 tests/cases/TestUnchecked.c:223:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
   223 |         MockEfiStatusFunc(); // WARNING (Braceless default)
       |         ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverBinding.h:67:1: error: unknown type name 'EFI_STATUS' [clang-diagnostic-error]
+   67 | EFI_STATUS
+      | ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverBinding.h:70:6: error: unknown type name 'EFI_HANDLE' [clang-diagnostic-error]
+   70 |   IN EFI_HANDLE                             ControllerHandle,
+      |      ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverBinding.h:71:6: error: unknown type name 'EFI_DEVICE_PATH_PROTOCOL' [clang-diagnostic-error]
+   71 |   IN EFI_DEVICE_PATH_PROTOCOL               *RemainingDevicePath OPTIONAL
+      |      ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverBinding.h:110:1: error: unknown type name 'EFI_STATUS' [clang-diagnostic-error]
+  110 | EFI_STATUS
+      | ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverBinding.h:113:6: error: unknown type name 'EFI_HANDLE' [clang-diagnostic-error]
+  113 |   IN EFI_HANDLE                             ControllerHandle,
+      |      ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverBinding.h:114:6: error: unknown type name 'EFI_DEVICE_PATH_PROTOCOL' [clang-diagnostic-error]
+  114 |   IN EFI_DEVICE_PATH_PROTOCOL               *RemainingDevicePath OPTIONAL
+      |      ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverBinding.h:144:1: error: unknown type name 'EFI_STATUS' [clang-diagnostic-error]
+  144 | EFI_STATUS
+      | ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverBinding.h:147:7: error: unknown type name 'EFI_HANDLE' [clang-diagnostic-error]
+  147 |   IN  EFI_HANDLE                            ControllerHandle,
+      |       ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverBinding.h:149:7: error: unknown type name 'EFI_HANDLE' [clang-diagnostic-error]
+  149 |   IN  EFI_HANDLE                            *ChildHandleBuffer OPTIONAL
+      |       ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverBinding.h:179:3: error: unknown type name 'EFI_HANDLE' [clang-diagnostic-error]
+  179 |   EFI_HANDLE    ImageHandle;
+      |   ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverBinding.h:189:3: error: unknown type name 'EFI_HANDLE' [clang-diagnostic-error]
+  189 |   EFI_HANDLE    DriverBindingHandle;
+      |   ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverBinding.h:192:8: error: unknown type name 'EFI_GUID' [clang-diagnostic-error]
+  192 | extern EFI_GUID  gEfiDriverBindingProtocolGuid;
+      |        ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverConfiguration2.h:95:1: error: unknown type name 'EFI_STATUS' [clang-diagnostic-error]
+   95 | EFI_STATUS
+      | ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverConfiguration2.h:98:7: error: unknown type name 'EFI_HANDLE' [clang-diagnostic-error]
+   98 |   IN  EFI_HANDLE                                              ControllerHandle,
+      |       ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverConfiguration2.h:99:7: error: unknown type name 'EFI_HANDLE' [clang-diagnostic-error]
+   99 |   IN  EFI_HANDLE                                              ChildHandle  OPTIONAL,
+      |       ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverConfiguration2.h:134:1: error: unknown type name 'EFI_STATUS' [clang-diagnostic-error]
+  134 | EFI_STATUS
+      | ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverConfiguration2.h:137:7: error: unknown type name 'EFI_HANDLE' [clang-diagnostic-error]
+  137 |   IN  EFI_HANDLE                                              ControllerHandle,
+      |       ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverConfiguration2.h:138:7: error: unknown type name 'EFI_HANDLE' [clang-diagnostic-error]
+  138 |   IN  EFI_HANDLE                                              ChildHandle  OPTIONAL
+      |       ^
+/home/var4p/Documents/uefi_workspace/edk2/MdePkg/Include/Protocol/DriverConfiguration2.h:161:1: error: unknown type name 'EFI_STATUS' [clang-diagnostic-error]
+  161 | EFI_STATUS
+      | ^
