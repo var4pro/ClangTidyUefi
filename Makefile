@@ -1,18 +1,18 @@
 SHELL := /bin/bash
 
-PLUGIN_SO_V   := build/libUefiTidyModule.so
 SRC_FILES_V := $(shell find src -type f -name "*.cpp" 2>/dev/null)
-
-TIDY_RUN_V    := clang-tidy --quiet --load=$(PLUGIN_SO_V)
+PLUGIN_SO   := build/libUefiTidyModule.so
+TIDY_RUN_V    := clang-tidy --quiet --load=$(PLUGIN_SO)
 
 .PHONY: all build clean tidy format-do test format-check-all hook-check \
         update-expected generate-flags test-banned test-trace test-unchecked
 
-
 all: build
 
 #default
-build:
+build: $(PLUGIN_SO)
+
+$(PLUGIN_SO):
 	@echo "Building Clang Plugin..."
 	@cmake -S . -B build
 	@cmake --build build
@@ -38,21 +38,21 @@ format-do:
 # TEST SUITE
 # ==============================================================================
 
-test-banned: build tests/cases/compile_flags.txt
+test-banned: $(PLUGIN_SO) tests/cases/compile_flags.txt
 	@echo "Running Banned Allocators Test..."
 	@$(TIDY_RUN_V) --checks='-*,uefi-banned-allocator' tests/cases/TestBanned.c 2>&1 \
 		| sed 's|.*tests/cases/|tests/cases/|g' \
 		| diff -u tests/test_banned_tidy_report_expected.txt -
 	@echo "  └─ Banned Allocators Test PASSED"
 
-test-trace: build tests/cases/compile_flags.txt
+test-trace: $(PLUGIN_SO) tests/cases/compile_flags.txt
 	@echo "Running Trace Function Test..."
 	@$(TIDY_RUN_V) --checks='-*,uefi-trace-function' tests/cases/TestTrace.c 2>&1 \
 		| sed 's|.*tests/cases/|tests/cases/|g' \
 		| diff -u tests/test_trace_tidy_report_expected.txt -
 	@echo "  └─ Trace Function Test PASSED"
 
-test-unchecked: build tests/cases/compile_flags.txt
+test-unchecked: $(PLUGIN_SO) tests/cases/compile_flags.txt
 	@echo "Running Unchecked Status Test..."
 	@$(TIDY_RUN_V) --checks='-*,uefi-unchecked-status' tests/cases/TestUnchecked.c 2>&1 \
 		| sed 's|.*tests/cases/|tests/cases/|g' \
@@ -63,7 +63,7 @@ test-unchecked: build tests/cases/compile_flags.txt
 test: test-banned test-trace test-unchecked
 	@echo "\n🎉 ALL UEFI STATIC ANALYSIS TESTS PASSED SUCCESSFULLY! 🎉\n"
 
-update-expected: build tests/cases/compile_flags.txt
+update-expected: $(PLUGIN_SO) tests/cases/compile_flags.txt
 	@echo "Regenerating expected test report baselines..."
 	@$(TIDY_RUN_V) --checks='-*,uefi-banned-allocator' tests/cases/TestBanned.c 2>&1 \
 		| sed 's|.*tests/cases/|tests/cases/|g' > tests/test_banned_tidy_report_expected.txt
@@ -79,9 +79,10 @@ export EDK2_PATH_V := $(WORKSPACE_DIR_V)/edk2
 
 generate-flags: tests/cases/compile_flags.txt
 tests/cases/compile_flags.txt: tests/cases/compile_flags.txt.in
-ifeq ($(strip $(WORKSPACE_DIR_V)),)
-	$(error [ERROR] WORKSPACE_DIR_V is not set! Please set it before running.)
-endif
+	@if [ -z "$(strip $(WORKSPACE_DIR_V))" ]; then \
+		echo "[ERROR] WORKSPACE_DIR_V is not set! Please set it before running."; \
+		exit 1; \
+	fi
 	@echo "Generating tests/cases/compile_flags.txt..."
 	@envsubst < $< > $@
 

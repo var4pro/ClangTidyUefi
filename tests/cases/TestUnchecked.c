@@ -1,3 +1,4 @@
+// clang-format off
 #include "LogUtils.h"
 #include "Utils.h"
 

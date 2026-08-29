@@ -1,60 +1,60 @@
-tests/cases/TestUnchecked.c:18:5: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-   18 |     MockEfiStatusFunc();                           // WARNING
+tests/cases/TestUnchecked.c:19:5: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+   19 |     MockEfiStatusFunc();                           // WARNING
       |     ^
-tests/cases/TestUnchecked.c:23:5: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-   23 |     MockReturnStatusFunc();                           // WARNING
+tests/cases/TestUnchecked.c:24:5: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+   24 |     MockReturnStatusFunc();                           // WARNING
       |     ^
-tests/cases/TestUnchecked.c:64:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-   64 |         MockEfiStatusFunc(); // WARNING
+tests/cases/TestUnchecked.c:65:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+   65 |         MockEfiStatusFunc(); // WARNING
       |         ^
-tests/cases/TestUnchecked.c:70:20: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-   70 |     if (Condition) MockEfiStatusFunc();                      // WARNING
+tests/cases/TestUnchecked.c:71:20: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+   71 |     if (Condition) MockEfiStatusFunc();                      // WARNING
       |                    ^
-tests/cases/TestUnchecked.c:82:5: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-   82 |     MockEfiStatusFunc();                  // WARNING
+tests/cases/TestUnchecked.c:83:5: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+   83 |     MockEfiStatusFunc();                  // WARNING
       |     ^
-tests/cases/TestUnchecked.c:88:5: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-   88 |     BS->CloseEvent(Event);                                         // WARNING
+tests/cases/TestUnchecked.c:89:5: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+   89 |     BS->CloseEvent(Event);                                         // WARNING
       |     ^
-tests/cases/TestUnchecked.c:99:13: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-   99 |     (UINTN) MockEfiStatusFunc();               // WARNING
+tests/cases/TestUnchecked.c:100:13: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+  100 |     (UINTN) MockEfiStatusFunc();               // WARNING
       |             ^
-tests/cases/TestUnchecked.c:118:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-  118 |         MockEfiStatusFunc(); // WARNING (inner discarded)
+tests/cases/TestUnchecked.c:119:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+  119 |         MockEfiStatusFunc(); // WARNING (inner discarded)
       |         ^
-tests/cases/TestUnchecked.c:136:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-  136 |         MockEfiStatusFunc(); // WARNING (yielded, but the whole block is ignored)
+tests/cases/TestUnchecked.c:137:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+  137 |         MockEfiStatusFunc(); // WARNING (yielded, but the whole block is ignored)
       |         ^
-tests/cases/TestUnchecked.c:144:13: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-  144 |             MockEfiStatusFunc(); // WARNING (inner block discarded)
+tests/cases/TestUnchecked.c:145:13: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+  145 |             MockEfiStatusFunc(); // WARNING (inner block discarded)
       |             ^
-tests/cases/TestUnchecked.c:155:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-  155 |         MockEfiStatusFunc(); // WARNING
+tests/cases/TestUnchecked.c:156:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+  156 |         MockEfiStatusFunc(); // WARNING
       |         ^
-tests/cases/TestUnchecked.c:157:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-  157 |         MockReturnStatusFunc(); // WARNING
+tests/cases/TestUnchecked.c:158:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+  158 |         MockReturnStatusFunc(); // WARNING
       |         ^
-tests/cases/TestUnchecked.c:163:23: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-  163 |     while (Condition) MockEfiStatusFunc();                   // WARNING
+tests/cases/TestUnchecked.c:164:23: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+  164 |     while (Condition) MockEfiStatusFunc();                   // WARNING
       |                       ^
-tests/cases/TestUnchecked.c:170:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-  170 |         MockEfiStatusFunc();                                    // WARNING
+tests/cases/TestUnchecked.c:171:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+  171 |         MockEfiStatusFunc();                                    // WARNING
       |         ^
-tests/cases/TestUnchecked.c:178:10: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-  178 |     for (MockEfiStatusFunc(); FALSE;) {  // WARNING
+tests/cases/TestUnchecked.c:179:10: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+  179 |     for (MockEfiStatusFunc(); FALSE;) {  // WARNING
       |          ^
-tests/cases/TestUnchecked.c:191:28: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-  191 |     for (int i = 0; i < 5; MockEfiStatusFunc()) // WARNING
+tests/cases/TestUnchecked.c:192:28: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+  192 |     for (int i = 0; i < 5; MockEfiStatusFunc()) // WARNING
       |                            ^
-tests/cases/TestUnchecked.c:197:33: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-  197 |     for (int i = 0; i < 5; i++) MockReturnStatusFunc(); // WARNING
+tests/cases/TestUnchecked.c:198:33: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+  198 |     for (int i = 0; i < 5; i++) MockReturnStatusFunc(); // WARNING
       |                                 ^
-tests/cases/TestUnchecked.c:215:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-  215 |         MockEfiStatusFunc(); // WARNING (Braceless case)
+tests/cases/TestUnchecked.c:216:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+  216 |         MockEfiStatusFunc(); // WARNING (Braceless case)
       |         ^
-tests/cases/TestUnchecked.c:218:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-  218 |         MockReturnStatusFunc(); // WARNING (Braced case, caught by compoundStmt)
+tests/cases/TestUnchecked.c:219:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+  219 |         MockReturnStatusFunc(); // WARNING (Braced case, caught by compoundStmt)
       |         ^
-tests/cases/TestUnchecked.c:222:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
-  222 |         MockEfiStatusFunc(); // WARNING (Braceless default)
+tests/cases/TestUnchecked.c:223:9: warning: Return value of type 'EFI_STATUS' must not be ignored (wrap in CHECK_FOR_ERROR or handle it). [uefi-unchecked-status]
+  223 |         MockEfiStatusFunc(); // WARNING (Braceless default)
       |         ^

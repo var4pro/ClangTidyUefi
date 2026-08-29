@@ -1,3 +1,4 @@
+// clang-format off
 #include "Allocator.h"
 #include <Uefi.h>
 #include <Base.h>
