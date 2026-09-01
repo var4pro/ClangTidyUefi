@@ -77,7 +77,10 @@ update-expected: $(PLUGIN_SO) tests/cases/compile_flags.txt
 WORKSPACE_DIR_V ?= 
 export EDK2_PATH_V := $(WORKSPACE_DIR_V)/edk2
 
-generate-flags: tests/cases/compile_flags.txt
+generate-flags: 
+	@rm -f tests/cases/compile_flags.txt
+	@$(MAKE) tests/cases/compile_flags.txt
+	
 tests/cases/compile_flags.txt: tests/cases/compile_flags.txt.in
 	@if [ -z "$(strip $(WORKSPACE_DIR_V))" ]; then \
 		echo "[ERROR] WORKSPACE_DIR_V is not set! Please set it before running."; \
@@ -91,3 +94,11 @@ format-check-all: format-do hook-check
 
 #auto invoking
 hook-check: build tidy test
+
+
+
+
+
+#tools
+print-%:
+	@echo '$* = $($*)'

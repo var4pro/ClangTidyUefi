@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.31)
+cmake_minimum_required(VERSION 3.28)
 project(trace_checker C CXX)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -25,6 +25,7 @@ target_precompile_headers(UefiTidyModule PRIVATE
     <clang/Lex/Lexer.h>
     <string>
     <vector>
+    #<clang-tidy/ClangTidyModuleRegistry.h>
 )
 
 target_link_libraries(UefiTidyModule
