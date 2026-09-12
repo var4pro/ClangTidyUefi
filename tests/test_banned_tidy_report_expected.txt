@@ -1,37 +1,33 @@
-tests/cases/TestBanned.c.
-tests/cases/TestBanned.c:25:5: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
-   25 |     AllocatePool(EfiBootServicesData, 128, Ptr); // WARuNING
+tests/cases/TestBanned.c:26:5: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
+   26 |     AllocatePool(EfiBootServicesData, 128, Ptr); // WARuNING
       |     ^
-tests/cases/TestBanned.c:28:42: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
-   28 | VOID Test2_BannedDirectFree(VOID* Ptr) { FreePool(Ptr); } // WARNING
+tests/cases/TestBanned.c:29:42: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
+   29 | VOID Test2_BannedDirectFree(VOID* Ptr) { FreePool(Ptr); } // WARNING
       |                                          ^
-tests/cases/TestBanned.c:32:15: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
-   32 |     if (TRUE) gBS->AllocatePool(EfiBootServicesData, 128, Ptr); // WARNING
+tests/cases/TestBanned.c:33:15: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
+   33 |     if (TRUE) gBS->AllocatePool(EfiBootServicesData, 128, Ptr); // WARNING
       |               ^
-tests/cases/TestBanned.c:36:15: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
-   36 |     if (TRUE) gBS->FreePool(Ptr); // WARNING
+tests/cases/TestBanned.c:37:15: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
+   37 |     if (TRUE) gBS->FreePool(Ptr); // WARNING
       |               ^
-tests/cases/TestBanned.c:42:5: error: use of undeclared identifier 'AUTO_FREE' [clang-diagnostic-error]
-   42 |     AUTO_FREE VOID* Ptr = Var4alloc(128);
-      |     ^~~~~~~~~
-tests/cases/TestBanned.c:54:5: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
-   54 |     AllocatePages(AllocateAnyPages, EfiBootServicesData, 1, &Addr); // WARNING
-      |     ^
 tests/cases/TestBanned.c:55:5: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
-   55 |     FreePages(Addr, 1);                                             // WARNING
+   55 |     AllocatePages(AllocateAnyPages, EfiBootServicesData, 1, &Addr); // WARNING
       |     ^
-tests/cases/TestBanned.c:60:5: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
-   60 |     gBS->AllocatePages(AllocateAnyPages, EfiBootServicesData, 1, &Addr); // WARNING
+tests/cases/TestBanned.c:56:5: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
+   56 |     FreePages(Addr, 1);                                             // WARNING
       |     ^
 tests/cases/TestBanned.c:61:5: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
-   61 |     gBS->FreePages(Addr, 1);                                             // WARNING
+   61 |     gBS->AllocatePages(AllocateAnyPages, EfiBootServicesData, 1, &Addr); // WARNING
       |     ^
-tests/cases/TestBanned.c:68:5: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
-   68 |     (AllocatePool)(EfiBootServicesData, 128, Ptr);        // WARNING
+tests/cases/TestBanned.c:62:5: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
+   62 |     gBS->FreePages(Addr, 1);                                             // WARNING
       |     ^
 tests/cases/TestBanned.c:69:5: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
-   69 |     ((gBS)->AllocatePool)(EfiBootServicesData, 128, Ptr); // WARNING
+   69 |     (AllocatePool)(EfiBootServicesData, 128, Ptr);        // WARNING
       |     ^
-tests/cases/TestBanned.c:74:9: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
-   74 |     if (gBS->AllocatePool(EfiBootServicesData, 128, Ptr) == EFI_SUCCESS) { // WARNING
+tests/cases/TestBanned.c:70:5: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
+   70 |     ((gBS)->AllocatePool)(EfiBootServicesData, 128, Ptr); // WARNING
+      |     ^
+tests/cases/TestBanned.c:75:9: warning: Using default allocators is blocked (AllocatePool, FreePool, etc.). Use custom project allocator. [uefi-banned-allocator]
+   75 |     if (gBS->AllocatePool(EfiBootServicesData, 128, Ptr) == EFI_SUCCESS) { // WARNING
       |         ^

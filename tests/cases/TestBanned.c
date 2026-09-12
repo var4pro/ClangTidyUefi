@@ -1,5 +1,6 @@
 // clang-format off
 #include "Allocator.h"
+#include <ProcessorBind.h>
 #include <Uefi.h>
 #include <Base.h>
 #include <Library/UefiLib.h>
