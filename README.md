@@ -3,20 +3,20 @@
 Custom Clang-Tidy module for enforcing UEFI/EDK2 safety rules.
 
 ## Included Checks
-- `uefi-unchecked-status`: Enforces proper handling of all `EFI_STATUS` returns by warning about not using return status. (supports GNU blocks, function pointers, and casts).
+- `uefi-unchecked-status`: Enforces proper handling of all `EFI_STATUS` and `RETURN_STATUS` returns by warning about not using return status. (supports GNU blocks, function pointers, and casts).
 - `uefi-banned-allocator`: Blocks standard UEFI allocators (`AllocatePool`, `AllocatePages`, `FreePool`, `FreePages`) in favor of custom project allocators.
-- `uefi-trace-function`: Enforces `TRACE_FUNCTION();` as the first statement in every function for selected files(use uefi-trace-function.TargetFiles).
+- `uefi-trace-function`: Enforces `TRACE_FUNCTION();` as the first statement in every function for selected files(use uefi-trace-function.TargetFiles), if `uefi-trace-function.TargetFiles` isn't provided, assumes TRACE_FUNCTION() is needed for every file in the project.
 
 ## Build & Test(Linux)
 ```bash
-make generate-flags WORKSPACE_DIR_V=/home/var4p/Documents/uefi_workspace/edk2/..  # generate flags for test cases
+make init WORKSPACE_DIR_V=/home/var4p/Documents/uefi_workspace/edk2/..  # generate flags for test cases
 make build       # Compile libUefiTidyModule.so
 make test        # Run the test suite against expected outputs
 ```
 
 ## Development workflow(Linux)
 ```bash
-make generate-flags WORKSPACE_DIR_V=/home/var4p/Documents/uefi_workspace/edk2/..  # generate flags for test cases
+make init WORKSPACE_DIR_V=/home/var4p/Documents/uefi_workspace/edk2/..  # generate flags for test cases
 make build            # Compile libUefiTidyModule.so
 make clean            # Cleans build directory
 make tidy             # runs tidy on plugin's code

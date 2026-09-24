@@ -102,3 +102,6 @@ hook-check: build tidy test
 #tools
 print-%:
 	@echo '$* = $($*)'
+
+init: generate-flags
+	git config core.hooksPath .githooks
