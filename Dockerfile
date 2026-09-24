@@ -1,4 +1,4 @@
-FROM ubuntu:24.04 AS builder
+FROM ubuntu:26.04 AS builder
 # Disabling interactive requests tzdata in installing process 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -16,17 +16,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     nasm \
     python3 \
     uuid-dev \
-    clang \
-    clang-tidy \
-    clang-format \
-    llvm-dev \
-    libclang-dev \
+    clang-22 \
+    clang-tidy-22 \
+    clang-format-22 \
+    llvm-22-dev \
+    libclang-22-dev \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 # && cd edk2 \
 # && git submodule update --init --recursive --depth 1 \ - there's no need for this repo
 # && make -C BaseTools -j$(nproc)
 WORKDIR /workspace
+RUN ln -sf /usr/bin/clang-tidy-22 /usr/bin/clang-tidy && ln -sf /usr/bin/clang-format-22 /usr/bin/clang-format
 RUN git clone --depth 1 -b edk2-stable202608 https://github.com/tianocore/edk2.git
 
 # Переменные окружения для сборки
