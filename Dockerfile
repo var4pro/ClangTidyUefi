@@ -9,8 +9,8 @@
 #    └── ...
 
 FROM debian:12 AS builder
-
-ENV DEBIAN_FRONTEND=noninteractive # Disabling interactive requests tzdata in installing process 
+# Disabling interactive requests tzdata in installing process
+ENV DEBIAN_FRONTEND=noninteractive
 
 # build-essential - default tooling & compilers
 # gettext-base - for envsubst tool(generating compile_flags.txt)
