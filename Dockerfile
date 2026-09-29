@@ -9,7 +9,7 @@
 #    └── ...
 
 FROM debian:12 AS builder
-# Disabling interactive requests tzdata in installing process
+# Disabling interactive requests tzdata in installing process 
 ENV DEBIAN_FRONTEND=noninteractive
 
 # build-essential - default tooling & compilers
@@ -35,6 +35,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /workspace
 RUN ln -sf /usr/bin/clang-tidy-22 /usr/bin/clang-tidy && ln -sf /usr/bin/clang-format-22 /usr/bin/clang-format
+RUN git clone --depth 1 -b edk2-stable202608 https://github.com/tianocore/edk2.git
 
 ENV WORKSPACE_DIR_V=/workspace
 WORKDIR /workspace/src
