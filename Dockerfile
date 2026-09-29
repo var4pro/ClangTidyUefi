@@ -1,4 +1,14 @@
-FROM ubuntu:26.04 AS builder
+# Container layout
+#/workspace/
+#├── edk2/                      <-- Base UEFI library (MdePkg, ShellPkg, BaseTools)
+#│   ├── MdePkg/Include/        <-- Clang-tidy needs these headers
+#│   └── ...
+#│
+#└── src/                       <-- Your project code (Active working directory)
+#    ├── compile_flags.txt      <-- Points to /workspace/edk2/...
+#    └── ...
+
+FROM debian:12 AS builder
 # Disabling interactive requests tzdata in installing process 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -30,8 +40,6 @@ WORKDIR /workspace
 RUN ln -sf /usr/bin/clang-tidy-22 /usr/bin/clang-tidy && ln -sf /usr/bin/clang-format-22 /usr/bin/clang-format
 RUN git clone --depth 1 -b edk2-stable202608 https://github.com/tianocore/edk2.git
 
-# Переменные окружения для сборки
 ENV WORKSPACE_DIR_V=/workspace
-
 WORKDIR /workspace/src
-CMD ["make", "clean", "generate-flags", "format-check-all"]
+CMD ["bash", "-c", "cp -r /host_code/. /workspace/src && make clean init format-check-all"]
