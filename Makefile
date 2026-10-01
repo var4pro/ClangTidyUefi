@@ -9,7 +9,7 @@ TIDY_RUN_V    := clang-tidy --quiet --load=$(PLUGIN_SO) --config='{CheckOptions:
 
 all: build
 
-#default
+#build
 build: $(PLUGIN_SO)
 
 $(PLUGIN_SO):
@@ -17,6 +17,7 @@ $(PLUGIN_SO):
 	@cmake -S . -B build
 	@cmake --build build
 	
+#clean
 clean:
 	rm -rf build
 
@@ -59,8 +60,7 @@ test-unchecked: $(PLUGIN_SO) tests/cases/compile_flags.txt
 		| diff -u tests/test_unchecked_tidy_report_expected.txt -
 	@echo "  └─ Unchecked Status Test PASSED"
 
-# Run all tests sequentially
-test: test-banned test-trace test-unchecked
+test: test-banned test-trace test-unchecked # Run all tests sequentially
 	@echo "\n🎉 ALL UEFI STATIC ANALYSIS TESTS PASSED SUCCESSFULLY! 🎉\n"
 
 update-expected: $(PLUGIN_SO) tests/cases/compile_flags.txt
@@ -89,11 +89,10 @@ tests/cases/compile_flags.txt: tests/cases/compile_flags.txt.in
 	@echo "Generating tests/cases/compile_flags.txt..."
 	@envsubst < $< > $@
 
-#manually invoke this
-format-check-all: format-do hook-check
 
-#auto invoking
-hook-check: build tidy test
+#Testing everything
+format-check-all: format-do hook-check #manually invoke this
+hook-check: build tidy test #auto invoking
 
 
 
