@@ -20,6 +20,7 @@ $(PLUGIN_SO):
 #clean
 clean:
 	rm -rf build
+	rm -f tests/cases/compile_flags.txt
 
 #tidy
 tidy:
