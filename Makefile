@@ -1,18 +1,21 @@
 SHELL := /bin/bash
 
+.NOTPARALLEL:
+.DELETE_ON_ERROR:
+
 SRC_FILES_V := $(shell find src -type f -name "*.cpp" 2>/dev/null)
 PLUGIN_SO   := build/libUefiTidyModule.so
 TIDY_RUN_V    := clang-tidy --quiet --load=$(PLUGIN_SO) --config='{CheckOptions: {uefi-trace-function.TargetFiles: ""}}'
 
 .PHONY: all build clean tidy format-do test format-check-all hook-check \
-        update-expected generate-flags test-banned test-trace test-unchecked
+        update-expected generate-flags test-banned test-trace test-unchecked init
 
 all: build
 
 #build
 build: $(PLUGIN_SO)
 
-$(PLUGIN_SO):
+$(PLUGIN_SO): $(SRC_FILES_V) CMakeLists.txt
 	@echo "Building Clang Plugin..."
 	@cmake -S . -B build
 	@cmake --build build
@@ -40,42 +43,45 @@ format-do:
 # TEST SUITE
 # ==============================================================================
 
+define tidy_report
+$(TIDY_RUN_V) --checks='-*,$(1)' tests/cases/$(2) 2>&1 | sed 's|.*tests/cases/|tests/cases/|g'
+endef
+
+
 test-banned: $(PLUGIN_SO) tests/cases/compile_flags.txt
 	@echo "Running Banned Allocators Test..."
-	@$(TIDY_RUN_V) --checks='-*,uefi-banned-allocator' tests/cases/TestBanned.c 2>&1 \
-		| sed 's|.*tests/cases/|tests/cases/|g' \
+	@$(call tidy_report,uefi-banned-allocator,TestBanned.c) \
 		| diff -u tests/test_banned_tidy_report_expected.txt -
 	@echo "  └─ Banned Allocators Test PASSED"
 
+
 test-trace: $(PLUGIN_SO) tests/cases/compile_flags.txt
 	@echo "Running Trace Function Test..."
-	@$(TIDY_RUN_V) --checks='-*,uefi-trace-function' tests/cases/TestTrace.c 2>&1 \
-		| sed 's|.*tests/cases/|tests/cases/|g' \
+	@$(call tidy_report,uefi-trace-function,TestTrace.c) \
 		| diff -u tests/test_trace_tidy_report_expected.txt -
 	@echo "  └─ Trace Function Test PASSED"
 
 test-unchecked: $(PLUGIN_SO) tests/cases/compile_flags.txt
 	@echo "Running Unchecked Status Test..."
-	@$(TIDY_RUN_V) --checks='-*,uefi-unchecked-status' tests/cases/TestUnchecked.c 2>&1 \
-		| sed 's|.*tests/cases/|tests/cases/|g' \
+	@$(call tidy_report,uefi-unchecked-status,TestUnchecked.c) \
 		| diff -u tests/test_unchecked_tidy_report_expected.txt -
 	@echo "  └─ Unchecked Status Test PASSED"
 
 test: test-banned test-trace test-unchecked # Run all tests sequentially
-	@echo "\n🎉 ALL UEFI STATIC ANALYSIS TESTS PASSED SUCCESSFULLY! 🎉\n"
+	@printf "\n🎉 ALL UEFI STATIC ANALYSIS TESTS PASSED SUCCESSFULLY! 🎉\n"
 
 update-expected: $(PLUGIN_SO) tests/cases/compile_flags.txt
 	@echo "Regenerating expected test report baselines..."
-	@$(TIDY_RUN_V) --checks='-*,uefi-banned-allocator' tests/cases/TestBanned.c 2>&1 \
-		| sed 's|.*tests/cases/|tests/cases/|g' > tests/test_banned_tidy_report_expected.txt
-	@$(TIDY_RUN_V) --checks='-*,uefi-trace-function' tests/cases/TestTrace.c 2>&1 \
-		| sed 's|.*tests/cases/|tests/cases/|g' > tests/test_trace_tidy_report_expected.txt
-	@$(TIDY_RUN_V) --checks='-*,uefi-unchecked-status' tests/cases/TestUnchecked.c 2>&1 \
-		| sed 's|.*tests/cases/|tests/cases/|g' > tests/test_unchecked_tidy_report_expected.txt
+	@$(call tidy_report,uefi-banned-allocator,TestBanned.c)    > tests/test_banned_tidy_report_expected.txt
+	@$(call tidy_report,uefi-trace-function,TestTrace.c)       > tests/test_trace_tidy_report_expected.txt
+	@$(call tidy_report,uefi-unchecked-status,TestUnchecked.c) > tests/test_unchecked_tidy_report_expected.txt
 	@echo "Expected reports updated successfully!"
 
 #flags
 WORKSPACE_DIR_V ?= 
+ifneq ($(strip $(WORKSPACE_DIR_V)),)
+override WORKSPACE_DIR_V := $(abspath $(WORKSPACE_DIR_V))
+endif
 export EDK2_PATH_V := $(WORKSPACE_DIR_V)/edk2
 
 generate-flags: 
@@ -88,7 +94,7 @@ tests/cases/compile_flags.txt: tests/cases/compile_flags.txt.in
 		exit 1; \
 	fi
 	@echo "Generating tests/cases/compile_flags.txt..."
-	@envsubst < $< > $@
+	@envsubst '$$EDK2_PATH_V' < $< > $@
 
 
 #Testing everything
