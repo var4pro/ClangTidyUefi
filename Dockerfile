@@ -39,4 +39,4 @@ RUN git clone --depth 1 -b edk2-stable202608 https://github.com/tianocore/edk2.g
 
 ENV WORKSPACE_DIR_V=/workspace
 WORKDIR /workspace/src
-CMD ["bash", "-c", "cp -r /host_code/. /workspace/src && make clean init format-check-all"]
+CMD ["bash", "-c", "cp -r /host_code/. /workspace/src && make clean init hook-check"]
